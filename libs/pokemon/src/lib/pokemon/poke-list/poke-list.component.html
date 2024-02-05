@@ -1,0 +1,28 @@
+@for (pokemon of pokemons; track pokemons) {  
+  <div [style]="{ display: 'inline-block', 'flex-direction': 'row', justifyContent: 'space-between'}">
+  <p-card 
+    header="{{ pokemon.name }}"
+    subheader="{{pokemon.types}}"
+    [style]="{ width: '360px', margin: '2em',}"
+  >
+    <ng-template pTemplate="header">
+      <img
+        alt="Card"
+        src="{{ pokemon.img }}"
+      />
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p-button label="Details" icon="pi pi-check"></p-button>
+      <p-button
+        label="Add"
+        icon="pi pi-times"
+        styleClass="p-button-secondary"
+        [style]="{ 'margin-left': '.5em' }"
+      ></p-button>
+    </ng-template>
+  </p-card>
+</div>
+}
+
+<p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="1300" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+

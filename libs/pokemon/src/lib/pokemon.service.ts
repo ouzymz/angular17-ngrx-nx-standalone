@@ -1,0 +1,64 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { forkJoin, map, switchMap, } from 'rxjs';
+import { DetailedPokemon, Pokemon, PokemonResponse, PokemonStat, SpeciesResponse } from './pokemon/model/models';
+import { environment } from '@org/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PokemonService {
+
+  constructor() { }
+  http = inject(HttpClient);
+  getPokemons() {
+    return this.http.get(environment.apiUrl).pipe(
+      map((response: any) => response.results),
+      switchMap((pokemons: any[]) => {
+        return forkJoin(pokemons.map(pokemon => this.http.get(pokemon.url))).pipe(map((pokemonShortDetails: any[]) => {
+          return pokemonShortDetails.map(pokemon => {
+            const returningPokemon: Pokemon = {
+              id: pokemon.id,
+              name: pokemon.name,
+              img: `${environment.svgUrl}${pokemon.id}.png`,
+              types: pokemon.types.map((type: any) => type.type.name).join(', '),
+            };
+            return returningPokemon;
+          });
+        }));
+      }),
+    );
+  }
+  
+  getPokemonDetails(id: number) {
+    const species$ = this.http.get<SpeciesResponse>(`https://pokeapi.co/api/v2/pokemon-species/${id}`).pipe(
+      map((species: any) => species.flavor_text_entries.find((entry: any) => entry.language.name === 'en').flavor_text)
+    );
+  
+    const pokemon$ = this.http.get<PokemonResponse>(`${environment.apiUrl}/${id}`);
+  
+    return forkJoin({ species: species$, pokemon: pokemon$ }).pipe(
+      map(({ species, pokemon }) => {
+        const detailedPokemon: DetailedPokemon = {
+          id: pokemon.id,
+          name: pokemon.name,
+          img: `${environment.svgUrl}${pokemon.id}.png`,
+          types: pokemon.types.map((type: any) => type.type.name),
+          description: species,
+          height: pokemon.height,
+          weight: pokemon.weight,
+          abilities: pokemon.abilities.map((ability: any) => ability.ability.name),
+          base_experience: pokemon.base_experience,
+          stats: pokemon.stats.map<PokemonStat>((stat) => {
+            return {
+              stat: {name: stat.stat.name},
+              base_stat: stat.base_stat,
+            }
+          }),
+        };
+        return detailedPokemon;
+      })
+    );
+  }
+
+}
