@@ -1,4 +1,4 @@
-@for (pokemon of pokemons; track pokemons) {  
+@for (pokemon of pokemons$ |async; track pokemons$) {  
   <div [style]="{ display: 'inline-block', 'flex-direction': 'row', justifyContent: 'space-between'}">
   <p-card 
     header="{{ pokemon.name }}"
@@ -12,12 +12,12 @@
       />
     </ng-template>
     <ng-template pTemplate="footer">
-      <p-button label="Details" icon="pi pi-check"></p-button>
+      <p-button [style]="{ 'margin-left': '.5em', 'display': 'inline-block' , 'align-items':'center'}" label="Details" icon="pi pi-check"></p-button>
       <p-button
         label="Add"
         icon="pi pi-times"
         styleClass="p-button-secondary"
-        [style]="{ 'margin-left': '.5em' }"
+        [style]="{ 'margin-left': '.5em', 'display': 'inline-block' , 'align-items':'center'}"
       ></p-button>
     </ng-template>
   </p-card>

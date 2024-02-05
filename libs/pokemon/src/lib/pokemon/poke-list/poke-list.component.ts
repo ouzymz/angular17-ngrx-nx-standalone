@@ -6,8 +6,15 @@ import { CarouselModule } from 'primeng/carousel';
 import { Pokemon } from '../model/models';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { PokemonService } from '../../pokemon.service';
+import * as actions from '../poke-list/+states/actions';
+import { Store } from '@ngrx/store';
+// import { createSelector } from '@ngrx/store';
+import { selectPokemons } from '../+states/selectors';
+import { paginatorApiActions } from '../+states/actions';
 
+// const productLustVm = createSelector({
 
+// })
 
 @Component({
   selector: 'org-poke-list',
@@ -18,7 +25,7 @@ import { PokemonService } from '../../pokemon.service';
 })
 export class PokeListComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  pokemons: Pokemon[] | any[] = [];
+  pokemons$ = this.store.select(selectPokemons);
 
 
   responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
@@ -31,17 +38,14 @@ export class PokeListComponent {
   rows: number = 10;
 
   onPageChange(event: PaginatorState) {
-    this.first = event.first as number;
-    this.rows = event.rows as number;
+    this.store.dispatch(paginatorApiActions.paginatorChanged({ paginatorState: event }));
+
   }
 
 
-  constructor(private PokemonService: PokemonService) {
+  constructor(private PokemonService: PokemonService,private readonly store: Store) {
 
-
-
-    this.PokemonService.getPokemons().subscribe((pokemons: any) => { this.pokemons = pokemons; console.log(pokemons) });
-
+    this.store.dispatch(actions.pokemonsOpened());
 
 
     this.responsiveOptions = [

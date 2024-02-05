@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { forkJoin, map, switchMap, } from 'rxjs';
 import { DetailedPokemon, Pokemon, PokemonResponse, PokemonStat, SpeciesResponse } from './pokemon/model/models';
 import { environment } from '@org/environment';
+import { PaginatorState } from 'primeng/paginator';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class PokemonService {
 
   constructor() { }
   http = inject(HttpClient);
-  getPokemons() {
-    return this.http.get(environment.apiUrl).pipe(
+  getPokemons(paginatorState: PaginatorState) {
+    return this.http.get(`${environment.apiUrl}/?offset=${paginatorState.first}&limit=20`).pipe(
       map((response: any) => response.results),
       switchMap((pokemons: any[]) => {
         return forkJoin(pokemons.map(pokemon => this.http.get(pokemon.url))).pipe(map((pokemonShortDetails: any[]) => {

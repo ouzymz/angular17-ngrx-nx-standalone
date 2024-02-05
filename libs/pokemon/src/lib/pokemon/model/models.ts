@@ -34,9 +34,3 @@ export interface PokemonStat{
 
 
 //PRIME NG
-export interface PageEvent {
-  first: number;
-  rows: number;
-  page: number;
-  pageCount: number;
-}
