@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { forkJoin, map, switchMap, } from 'rxjs';
+import { delay, forkJoin, map, switchMap,  } from 'rxjs';
 import { DetailedPokemon, Pokemon, PokemonResponse, PokemonStat, SpeciesResponse } from './pokemon/model/models';
 import { environment } from '@org/environment';
 import { PaginatorState } from 'primeng/paginator';
@@ -31,7 +31,7 @@ export class PokemonService {
     );
   }
   
-  getPokemonDetails(id: number) {
+  getPokemonDetails(id: string | undefined) {
     const species$ = this.http.get<SpeciesResponse>(`https://pokeapi.co/api/v2/pokemon-species/${id}`).pipe(
       map((species: any) => species.flavor_text_entries.find((entry: any) => entry.language.name === 'en').flavor_text)
     );
@@ -39,6 +39,7 @@ export class PokemonService {
     const pokemon$ = this.http.get<PokemonResponse>(`${environment.apiUrl}/${id}`);
   
     return forkJoin({ species: species$, pokemon: pokemon$ }).pipe(
+      delay(2500), // to simulate a slow network
       map(({ species, pokemon }) => {
         const detailedPokemon: DetailedPokemon = {
           id: pokemon.id,

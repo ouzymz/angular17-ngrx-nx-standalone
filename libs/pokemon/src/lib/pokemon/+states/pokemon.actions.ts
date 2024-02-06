@@ -1,5 +1,5 @@
 import { createActionGroup, props } from "@ngrx/store";
-import { Pokemon } from "../model/models";
+import { DetailedPokemon, Pokemon } from "../model/models";
 import { PaginatorState } from "primeng/paginator";
   
 export const pokemonApiActions = createActionGroup({
@@ -7,6 +7,9 @@ source: "Pokemon API",
 events: {
     pokemonsFecthSuccess: props<{ pokemons: Pokemon[] }>(),
     pokemonsFetchedError: props<{ errorMessage: string }>(),
+
+    singlePokemonFecthSuccess: props<{ pokemon: DetailedPokemon }>(),
+    singlePokemonFecthError: props<{ errorMessage: string }>(),
 },
 });
 
@@ -15,4 +18,4 @@ export const paginatorApiActions = createActionGroup({
     events: {
         paginatorChanged: props<{ paginatorState: PaginatorState }>(),
     },
-})
+}) 

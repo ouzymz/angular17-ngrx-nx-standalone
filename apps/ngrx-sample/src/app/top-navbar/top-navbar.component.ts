@@ -18,8 +18,8 @@ export class TopNavbarComponent implements OnInit{
 
   ngOnInit() {
       this.items = [
-          { label: 'Pokemons', icon: 'pi pi-fw pi-home' },
-          { label: 'Poke-Foods', icon: 'pi pi-fw pi-calendar' },
+          { label: 'Pokemons', icon: 'pi pi-fw pi-home' , routerLink: ['./Poke/List'] },
+          { label: 'Poke-Deck', icon: 'pi pi-fw pi-calendar' , routerLink: ['./PokeDeck'] },
       ];
 
       this.activeItem = this.items[0]; // state  management eklenecek !!

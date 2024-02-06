@@ -1,0 +1,50 @@
+
+
+.poke-details-container {
+  padding-top: 5%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  .image-container {
+    width: 30% !important;
+    height: 30% !important;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+
+    box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
+
+    .poke-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .accordion-container{
+    width: 95%;
+    margin: 10%;
+  }
+
+  .accor-ske-element{
+    width: 95%;
+    margin: 10%;
+  }
+
+  .img-ske{
+    box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.75);
+  }
+
+  .header-ske{
+    margin-top: 5%;
+    margin-bottom: 10%;
+  }
+}

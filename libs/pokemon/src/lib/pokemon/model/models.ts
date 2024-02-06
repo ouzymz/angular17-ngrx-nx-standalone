@@ -7,10 +7,6 @@ export interface Pokemon {
 }
 
 export interface PokemonResponse extends Pokemon{
-  id: number;
-  name: string;
-  img: string;
-  types: string[];
   height: number;
   weight: number;
   abilities: string[];
