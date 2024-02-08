@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { PokemonService } from '../../pokemon.service';
+import { PokemonService } from '../pokemon.service';
 import { Store } from '@ngrx/store';
-import { Pokemon } from '../model/models';
-import * as PokemonActions from '../../poke-list/+states/poke-list.actions';
+import { Pokemon } from "@org/environment";
+import { pokeListActions} from '../poke-list/+states/poke-list.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { paginatorApiActions, pokemonApiActions } from './pokemon.actions';
 import { pokemonFeature } from './pokemon.reducers';
-import { pokemonDetailsActions } from '../../poke-details/+states/poke-details.actions';
+import { pokemonDetailsActions } from '../poke-details/+states/poke-details.actions';
 import { selectRouterParam } from '@org/environment';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class PokemonEffects {
   fecthPokemons$ = createEffect(() => {
     return this.actions.pipe(
       ofType(
-        PokemonActions.pokemonsOpened,
+        pokeListActions.pokemonsOpened,
         paginatorApiActions.paginatorChanged
       ),
       concatLatestFrom(() =>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccordionModule } from 'primeng/accordion';
 import { Store, createSelector } from '@ngrx/store';
 import { pokemonDetailsActions } from './+states/poke-details.actions';
-import { pokemonFeature } from '../pokemon/+states/pokemon.reducers';
+import { pokemonFeature } from '../+states/pokemon.reducers';
 import { SkeletonModule } from 'primeng/skeleton';
 import { SpinnerModule } from 'primeng/spinner';
 

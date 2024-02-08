@@ -1,4 +1,10 @@
-import { createAction } from "@ngrx/store";
+import {  createActionGroup, emptyProps } from '@ngrx/store';
 
-export const pokemonsOpened = createAction("[Pokemon List Page] Opened");
 
+export const pokeListActions = createActionGroup({
+    source: "pokeList API",
+    events: {
+        pokemonsOpened: emptyProps(),
+
+    },
+});

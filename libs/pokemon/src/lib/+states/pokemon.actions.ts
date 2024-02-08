@@ -1,5 +1,5 @@
 import { createActionGroup, props } from "@ngrx/store";
-import { DetailedPokemon, Pokemon } from "../model/models";
+import { DetailedPokemon, Pokemon } from "@org/environment"    ;
 import { PaginatorState } from "primeng/paginator";
   
 export const pokemonApiActions = createActionGroup({

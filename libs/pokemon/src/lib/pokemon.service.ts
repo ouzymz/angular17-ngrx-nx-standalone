@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { delay, forkJoin, map, switchMap,  } from 'rxjs';
-import { DetailedPokemon, Pokemon, PokemonResponse, PokemonStat, SpeciesResponse } from './pokemon/model/models';
+import { DetailedPokemon, Pokemon, PokemonResponse, PokemonStat, SpeciesResponse } from "@org/environment";
 import { environment } from '@org/environment';
 import { PaginatorState } from 'primeng/paginator';
 

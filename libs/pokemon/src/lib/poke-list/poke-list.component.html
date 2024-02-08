@@ -14,6 +14,7 @@
     <ng-template pTemplate="footer">
       <p-button routerLink="../Details/{{pokemon.id}}" [style]="{ 'margin-left': '.5em', 'display': 'inline-block' , 'align-items':'center'}" label="Details" icon="pi pi-check"></p-button>
       <p-button
+        (click)="addToDeck(pokemon)"
         label="Add"
         icon="pi pi-times"
         styleClass="p-button-secondary"

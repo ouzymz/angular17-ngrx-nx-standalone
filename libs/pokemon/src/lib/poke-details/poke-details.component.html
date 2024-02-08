@@ -1,55 +1,56 @@
-
 @if((vm$ | async )!.LoadingState !== 'pending') {
-   
-    <div class="poke-details-container">
-        <div class="image-container">
-          <img class="poke-image"
-            src="{{(vm$ | async)!.pokemon.img}}"
-            alt=""
-          />
-        </div>
-      
-        <div class="header-container">
-          <h1>{{(vm$ | async)!.pokemon.name}}</h1>
-        </div>
-        <p-accordion class="accordion-container"  [activeIndex]="0">
-          <p-accordionTab header="About">
-            <p>
-              {{(vm$ | async)!.pokemon.description}}
-            </p>
-          </p-accordionTab>
-          <p-accordionTab header="Physical Attributes">
-            <p>
-                <span>height : </span>{{(vm$ | async)!.pokemon.height}} <br>
-                <span>weight : </span>{{(vm$ | async)!.pokemon.weight}} <br>
-                <span>abilities : </span>{{(vm$ | async)!.pokemon.abilities}} 
-            </p>
-          </p-accordionTab>
-          <p-accordionTab header="Stats & Abilities">
-            <p>
-              {{(vm$ | async)!.pokemon.stats | json}}
-              {{(vm$ | async)!.pokemon.abilities |  json}}
-            </p>
-          </p-accordionTab>
-        </p-accordion>
-      </div>
-
-}
-@else{
-
 
 <div class="poke-details-container">
-        <p-skeleton  shape="circle" height="30rem"  width="30rem"> </p-skeleton>
-        
-        <p-skeleton class="header-ske" height="5rem"  width="30rem" ></p-skeleton>
-        
-        
-        
-    <div class="">
-        <p-skeleton class="accor-ske-element" height="5rem"  width="95rem" ></p-skeleton>
-        <p-skeleton class="accor-ske-element" height="5rem" width="95rem" ></p-skeleton>
-        <p-skeleton class="accor-ske-element" height="5rem" width="95rem" ></p-skeleton>
-    </div>
+  <div class="image-container">
+    <img class="poke-image" src="{{ (vm$ | async)!.pokemon.img }}" alt="" />
+  </div>
 
-    </div>
+  <div class="header-container">
+    <h1>{{ (vm$ | async)!.pokemon.name }}</h1>
+  </div>
+  <p-accordion class="accordion-container" [activeIndex]="0">
+    <p-accordionTab header="About">
+      <p>
+        {{ (vm$ | async)!.pokemon.description }}
+      </p>
+    </p-accordionTab>
+    <p-accordionTab header="Physical Attributes">
+      <p>
+        <span>height : </span>{{ (vm$ | async)!.pokemon.height }} <br />
+        <span>weight : </span>{{ (vm$ | async)!.pokemon.weight }} <br />
+        <span>abilities : </span>{{ (vm$ | async)!.pokemon.abilities }}
+      </p>
+    </p-accordionTab>
+    <p-accordionTab header="Stats & Abilities">
+      <p>
+        {{ (vm$ | async)!.pokemon.stats | json }}
+        {{ (vm$ | async)!.pokemon.abilities | json }}
+      </p>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+
+} @else{
+
+<div class="poke-details-container">
+  <p-skeleton shape="circle" height="30rem" width="30rem"> </p-skeleton>
+
+  <p-skeleton class="header-ske" height="5rem" width="30rem"></p-skeleton>
+
+  <p-skeleton
+    class="accor-ske-element"
+    height="5rem"
+    width="95rem"
+  ></p-skeleton>
+  <p-skeleton
+    class="accor-ske-element"
+    height="5rem"
+    width="95rem"
+  ></p-skeleton>
+  <p-skeleton
+    class="accor-ske-element"
+    height="5rem"
+    width="95rem"
+  ></p-skeleton>
+</div>
 }

@@ -5,12 +5,14 @@ import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { PokemonService } from '../pokemon.service';
-import * as actions from './+states/poke-list.actions';
+import { pokeListActions} from './+states/poke-list.actions';
 import { Store } from '@ngrx/store';
 // import { createSelector } from '@ngrx/store';
-import { selectPokemons } from '../pokemon/+states/pokemon.selectors';
-import { paginatorApiActions } from '../pokemon/+states/pokemon.actions';
+import { selectPokemons } from '../+states/pokemon.selectors';
+import { paginatorApiActions } from '../+states/pokemon.actions';
 import { RouterModule } from '@angular/router';
+import { Pokemon } from '@org/environment';
+import { deckListApiActions } from '@org/deck';
 
 // const productLustVm = createSelector({
 
@@ -38,10 +40,15 @@ export class PokeListComponent {
 
   }
 
+  addToDeck(pokemon: Pokemon) {
+    console.log(pokemon);
+    this.store.dispatch(deckListApiActions.addToDeckInit({ pokemon }));
+  }
+
 
   constructor(private PokemonService: PokemonService,private readonly store: Store) {
 
-    this.store.dispatch(actions.pokemonsOpened());
+    this.store.dispatch(pokeListActions.pokemonsOpened());
 
 
     this.responsiveOptions = [

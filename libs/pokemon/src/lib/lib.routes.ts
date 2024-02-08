@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
-import { pokemonFeature } from './pokemon/+states/pokemon.reducers';
-import { PokemonEffects } from './pokemon/+states/pokemon.effects';
+import { pokemonFeature } from './+states/pokemon.reducers';
+import { PokemonEffects } from './+states/pokemon.effects';
 
 export const pokemonRoutes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'List' },
@@ -19,4 +19,3 @@ export const pokemonRoutes: Route[] = [
         .PokeDetailsComponent,
   },
 ];
-//approot'ta olacak providear buraya tasinacak.

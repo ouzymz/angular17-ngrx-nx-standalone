@@ -1,11 +1,11 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { LoadingState, RequestStatus } from '@org/environment';
-import { DetailedPokemon, Pokemon } from '../model/models';
+import { DetailedPokemon, Pokemon } from "@org/environment";
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { PaginatorState } from 'primeng/paginator';
-import {  pokemonsOpened } from '../../poke-list/+states/poke-list.actions';
+import {  pokeListActions } from '../poke-list/+states/poke-list.actions';
 import { paginatorApiActions, pokemonApiActions } from './pokemon.actions';
-import { pokemonDetailsActions } from '../../poke-details/+states/poke-details.actions';
+import { pokemonDetailsActions } from '../poke-details/+states/poke-details.actions';
 
 interface PokemonState {
   pokemon: DetailedPokemon ;
@@ -34,7 +34,7 @@ export const pokemonFeature = createFeature({
   name: 'pokemon',
   reducer: createReducer(
     initState,
-    on(pokemonsOpened, (state) => ({
+    on(pokeListActions.pokemonsOpened, (state) => ({
       ...state,
       pokemonsRequestStatus: LoadingState.PENDING,
     })),

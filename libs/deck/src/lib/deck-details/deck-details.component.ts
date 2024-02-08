@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'org-deck-list',
+  selector: 'org-deck-details',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './deck-list.component.html',
-  styleUrl: './deck-list.component.scss',
+  template: `<p>Deck Details</p>`,
+  styleUrl: './deck-details.component.scss',
 })
-export class DeckListComponent {}
+export class DeckDetailsComponent {}
