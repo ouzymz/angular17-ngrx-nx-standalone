@@ -10,4 +10,5 @@ export const appRoutes: Route[] = [
     path: 'PokeDeck',
     loadChildren: async () => (await import('@org/deck')).deckRoutes,
   },
+  
 ];

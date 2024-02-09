@@ -3,11 +3,31 @@ import { CommonModule } from '@angular/common';
 import { OrderListModule } from 'primeng/orderlist';
 import { Store } from '@ngrx/store';
 import { deckSelectors } from '../+states/deck.selectors';
+import { DeckEffects } from '../+states/deck.effects';
+// import { deckFeature } from '../+states/deck.reducers';
+import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
+
+export const effectProviders = [DeckEffects,   {
+  provide: USER_PROVIDED_EFFECTS,
+  multi: true,
+  useValue: [DeckEffects],
+}]
+
+// export const featureProvider =[
+//   deckFeature,
+//   {
+//     multi: true,
+//     useValue: [deckFeature],
+//   },
+
+// ]
 
 @Component({
   selector: 'org-deck-list',
   standalone: true,
   imports: [CommonModule, OrderListModule],
+  // providers: [effectProviders, featureProvider],
+  providers: [effectProviders],
   template: `
   @if(pokemons$ | async){
     <p-orderList

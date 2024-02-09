@@ -10,6 +10,7 @@ export const deckRoutes: Route[] = [
     path: 'Deck',
     loadComponent: async () =>
       (await import('./deck/deck.component')).DeckComponent,
-    // providers: [provideState(deckFeature), provideEffects(deckEffects)],
+    // providers: [provideState(deckFeature),provideEffects(deckEffects)],
+    // providers: [provideState(deckFeature)],
   },
 ];

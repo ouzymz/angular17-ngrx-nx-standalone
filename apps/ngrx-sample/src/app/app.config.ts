@@ -7,9 +7,9 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { ROUTER_FEATURE_KEY } from '@org/environment';
-import { provideEffects } from '@ngrx/effects';
+// import { provideEffects } from '@ngrx/effects';
 import { deckFeature} from '@org/deck';
-import { DeckEffects } from '@org/deck';
+// import { DeckEffects } from '@org/deck';
 
 
 export const appConfig: ApplicationConfig = {
@@ -22,6 +22,6 @@ export const appConfig: ApplicationConfig = {
     provideState(ROUTER_FEATURE_KEY, routerReducer),
     provideRouterStore(),
     provideState(deckFeature), 
-    provideEffects(DeckEffects)
+    // provideEffects(DeckEffects)
   ],
 };
